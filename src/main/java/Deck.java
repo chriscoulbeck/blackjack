@@ -3,29 +3,20 @@ import java.util.*;
 /**
  * Represents a deck of playing cards that supports shuffling and dealing.
  * <p>
- * Cards are dealt from the top of the deck.
- * The deck can be initialized with a predefined list of cards, excluding {@code null} entries,
- * and can be shuffled into random order.
+ * Cards are dealt from the top of the deck, and can be shuffled into random order.
  * </p>
  */
 public class Deck {
     private final Deque<Card> cards;
 
     /**
-     * Constructs a {@code Deck} initialized with the specified list of cards, filtering out any {@code null} entries.
-     * <p>
-     * The cards are added to the bottom of the deck in the order they appear in the provided list.
-     * </p>
-     *
-     * @param cardList the list of {@code Card} objects to initialize the deck with
-     * @throws NullPointerException if {@code cardList} is {@code null}
+     * Constructs a standard {@code Deck} of playing cards.
      */
-    public Deck(List<Card> cardList) {
-        Objects.requireNonNull(cardList, "cardList must not be null");
+    public Deck() {
         this.cards = new ArrayDeque<>();
-        for (Card card : cardList) {
-            if (card != null) {
-                this.cards.addLast(card);
+        for (Suit suit : Suit.values()) {
+            for (Rank rank : Rank.values()) {
+                cards.addLast(new Card(rank, suit));
             }
         }
     }
