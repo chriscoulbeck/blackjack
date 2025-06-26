@@ -13,7 +13,14 @@ public class Deck {
      * Constructs a standard {@code Deck} of playing cards.
      */
     public Deck() {
-        this.cards = new ArrayDeque<>();
+        cards = new ArrayDeque<>();
+        buildDeck();
+    }
+
+    public void buildDeck() {
+        if (cards == null) {
+            return;
+        }
         for (Suit suit : Suit.values()) {
             for (Rank rank : Rank.values()) {
                 cards.addLast(new Card(rank, suit));
@@ -44,5 +51,13 @@ public class Deck {
             return Optional.empty();
         }
         return Optional.of(cards.pop());
+    }
+
+    /**
+     * Resets the deck for a new round.
+     */
+    public void reset() {
+        cards.clear();
+        buildDeck();
     }
 }
