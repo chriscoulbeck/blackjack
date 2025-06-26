@@ -35,4 +35,12 @@ public class Player {
         hand.add(card);
         score += card.getValue();
     }
+
+    /**
+     * Resets the player for a new round.
+     */
+    public void reset() {
+        hand.clear();
+        score = 0;
+    }
 }
